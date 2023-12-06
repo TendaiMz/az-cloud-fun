@@ -37,6 +37,6 @@ jobs:
             subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
             resourceGroupName: ${{ secrets.AZURE_AGAB_RG }}
             template: ./first-bicep-deployment/main.bicep
-            parameters: 'storagePrefix=MyStorage storageSKU=Standard_LRS'
+            parameters: 'storagePrefix=stor storageSKU=Standard_LRS'
             failOnStdErr: false
 
