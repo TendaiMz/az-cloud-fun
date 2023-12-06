@@ -45,5 +45,5 @@ jobs:
         with:
             azcliversion: latest
             inlineScript: |
-              az account show
+              az --version
 
