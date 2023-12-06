@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: bicep-github-actions-deployment
+name: github-actions-bicep-deployment
 
 # Controls when the workflow will run
 on:
@@ -36,7 +36,7 @@ jobs:
         with:
             subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
             resourceGroupName: ${{ secrets.AZURE_AGAB_RG }}
-            template: ./main.bicep
+            template: ./first-bicep-deployment/main.bicep
             parameters: 'storagePrefix=Standard_LRS storageSKU=Standard_LRS'
             failOnStdErr: false
 
