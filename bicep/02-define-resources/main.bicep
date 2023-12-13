@@ -1,6 +1,9 @@
+@description('Specifies the location for resources.')
+param location string = 'Australia East'
+
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
-  name: 'tyndo-storage'
-  location: 'Australia East'
+  name: 'tyndostorage'
+  location: location
   sku: {
     name: 'Standard_LRS'
   }
@@ -12,7 +15,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   name: 'tyndo-app-service-plan'
-  location: 'Australia East'
+  location: location
   sku: {
     name: 'F1'
   }
@@ -20,7 +23,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
 
 resource appServiceApp 'Microsoft.Web/sites@2022-03-01'= {
 name: 'tyndo-app-launch'
-location: 'Australia East'
+location: location
 properties: {
   serverFarmId: appServicePlan.id
   httpsOnly: true
