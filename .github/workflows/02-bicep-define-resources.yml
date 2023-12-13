@@ -1,6 +1,6 @@
 # This is a basic workflow for deploying azure resources using a bicep template file
 
-name: github-actions-bicep-getting-started
+name: github-actions-bicep-define-resources
 
 # Controls when the workflow will run
 on:
