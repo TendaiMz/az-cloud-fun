@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:     
         ResourceGroupLocation: "australiaeast"
+        deploymentEnvironment: "nonprod"
     
     steps:     
       - uses: actions/checkout@v3
@@ -29,15 +30,15 @@ jobs:
           azcliversion: 2.30.0
           inlineScript: | 
            #!/bin/bash
-           az group create --name ${{ secrets.AZURE_AGAB_RG }} --location ${{env.ResourceGroupLocation}}
+           az group create --name ${{ secrets.AZURE__RG }} --location ${{env.ResourceGroupLocation}}
            echo "Azure resource group created"
              
       - name: deploy resources
         uses: azure/arm-deploy@v1
         with:
             subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }} # The subscriptionid was copied from Azure to the repository secret 
-            resourceGroupName: ${{ secrets.AZURE_AGAB_RG }} # The resource group was created manually and the resource group name was added to the repo secret
+            resourceGroupName: ${{ secrets.AZURE_RG }} # The resource group was created manually and the resource group name was added to the repo secret
             template: ./bicep/03-add-parameters&variables/main.bicep
-            parameters: deploymentEnvironment=nonprod            
+            parameters: deploymentEnvironment= ${{env.deploymentEnvironment}}            
             failOnStdErr: false
 
