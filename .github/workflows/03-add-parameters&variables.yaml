@@ -21,7 +21,7 @@ jobs:
       - name: Azure login
         uses: azure/login@v1.5.0
         with:
-            creds: ${{ secrets.AZURE_CREDS }} # The creds is created maunally in azure and saved as a repo secret
+            creds: ${{ secrets.AZURE_CREDENTIALS }} # The creds is created maunally in azure and saved as a repo secret
 
       - name: create Resource group
         uses: azure/CLI@v1
