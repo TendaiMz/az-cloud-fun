@@ -1,0 +1,41 @@
+# This is a basic workflow for deploying azure resources using a bicep template file
+
+name: github-actions-bicep-define-resources
+
+# Controls when the workflow will run
+on:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  
+  build-and-deploy:    
+    runs-on: ubuntu-latest
+    env:     
+        ResourceGroupLocation: "australiaeast"
+    
+    steps:     
+      - uses: actions/checkout@v3
+          
+      - name: Azure login
+        uses: azure/login@v1.5.0
+        with:
+            creds: ${{ secrets.AZURE_CREDS }} # The creds is created maunally in azure and saved as a repo secret
+
+      - uses: Azure/ClI@v1
+        with:
+            inlineScript: |
+            #!/bin/bash
+            az group create --name ${{ secrets.AZURE_AGAB_RG }} --location ${{ env.ResourceGroupLocation }} 
+            echo "Azure resource group created"
+        
+       # Deploy Bicep file
+      - name: deploy resources
+        uses: azure/arm-deploy@v1
+        with:
+            subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }} # The subscriptionid was copied from Azure to the repository secret 
+            resourceGroupName: ${{ secrets.AZURE_AGAB_RG }} # The resource group was created manually and the resource group name was added to the repo secret
+            template: ./bicep/03-add-parameters&variables/main.bicep            
+            failOnStdErr: false
+
