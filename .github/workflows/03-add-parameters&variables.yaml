@@ -39,6 +39,6 @@ jobs:
             subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }} # The subscriptionid was copied from Azure to the repository secret 
             resourceGroupName: ${{ secrets.AZURE_RG }} # The resource group was created manually and the resource group name was added to the repo secret
             template: ./bicep/03-add-parameters&variables/main.bicep
-            parameters: deploymentEnvironment = ${{ env.deploymentEnvironment }}            
+            parameters: deploymentEnvironment = nonprod           
             failOnStdErr: false
 
