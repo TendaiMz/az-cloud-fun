@@ -1,6 +1,6 @@
 param location string = resourceGroup().location
-param storageAccountName string = 'demoApp${uniqueString(resourceGroup().id)}'
-param appserviceAppName string = 'demoApp-${uniqueString(resourceGroup().id)}'
+param storageAccountName string = 'demoapp${uniqueString(resourceGroup().id)}'
+param appserviceAppName string = 'demoapp-${uniqueString(resourceGroup().id)}'
 
 @allowed([
   'nonprod'
@@ -11,7 +11,7 @@ param deploymentEnvironment string
 var storageAccSkuName = deploymentEnvironment == 'prod' ? 'Standard_GRS': 'Standard_LRS'
 var appServicePlanSku = deploymentEnvironment == 'prod' ? 'P2v3':'F1'
 
-var appServicePlanName = 'demoApp-service-plan'
+var appServicePlanName = 'demoapp-service-plan'
 
 resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   name: storageAccountName
