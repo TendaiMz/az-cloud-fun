@@ -13,7 +13,7 @@ jobs:
   build-and-deploy:    
     runs-on: ubuntu-latest
     env:     
-        ResourceGroupLocation: "australiaeast"
+        resourceGroupLocation: "australiaeast"
         deploymentEnvironment: "nonprod"
     
     steps:     
@@ -30,7 +30,7 @@ jobs:
           azcliversion: 2.30.0
           inlineScript: | 
            #!/bin/bash
-           az group create --name ${{ secrets.AZURE__RG }} --location ${{env.ResourceGroupLocation}}
+           az group create --name ${{ secrets.AZURE_RG }} --location ${{env.resourceGroupLocation}}
            echo "Azure resource group created"
              
       - name: deploy resources
